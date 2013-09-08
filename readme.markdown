@@ -5,6 +5,10 @@ walk the dependency graph to generate json output that can be fed into
 
 [![build status](https://secure.travis-ci.org/substack/module-deps.png)](http://travis-ci.org/substack/module-deps)
 
+# FORK
+
+**This fork adds `transformAll` option, see the doc below.**
+
 # example
 
 ``` js
