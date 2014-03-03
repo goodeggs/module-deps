@@ -4,9 +4,8 @@ var JSONStream = require('JSONStream');
 var packer = require('browser-pack');
 
 test('transform', function (t) {
-    t.plan(4);
-    var p = mdeps(__dirname + '/files/tr_module/main.js', {
-        transform: [ 'insert-aaa', 'insert-bbb' ],
+    t.plan(1);
+    var p = mdeps(__dirname + '/files/tr_rel/subdir/main.js', {
         transformKey: [ 'browserify', 'transform' ]
     });
     var pack = packer();
@@ -16,6 +15,8 @@ test('transform', function (t) {
     var src = '';
     pack.on('data', function (buf) { src += buf });
     pack.on('end', function () {
-        Function('t', src)(t);
+        Function('console', src)({ log: function (msg) {
+            t.equal(msg, 333);
+        } });
     });
 });
